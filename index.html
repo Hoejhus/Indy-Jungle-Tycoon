@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Indy Tycoon Shooter</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="game" width="1280" height="720"></canvas>
+
+  <div id="ui">
+    <!-- Compact toolbar in top-right -->
+    <div id="miniBar" class="glass tiny">
+      <button class="ibtn" data-upg="damage" title="Skade (+100)">⚔️</button>
+      <button class="ibtn" data-upg="range" title="Rækkevidde (+100)">🏹</button>
+      <button class="ibtn" data-upg="firerate" title="Skudhast. (+100)">⚡</button>
+      <div class="divider v"></div>
+      <button class="ibtn gold" id="openChestBtn" title="Åbn kiste">🗝️</button>
+      <div class="divider v"></div>
+      <button class="ibtn" data-upg="buy_turret" title="Køb tempelstatue">🏛️</button>
+      <button class="ibtn" data-upg="turret_dmg" title="Statue skade (+200)">➕⚔️</button>
+      <button class="ibtn" data-upg="turret_rate" title="Statue rate (+200)">➕⚡</button>
+      <button class="ibtn" data-upg="turret_range" title="Statue rækkev. (+200)">➕🏹</button>
+      <button class="ibtn" data-upg="turret_synergy" title="Statue synergi (+250)">✨</button>
+    </div>
+
+    <!-- Compact stats in top-right under toolbar -->
+    <div id="statsPanel" class="glass">
+      <div class="srow"><span>💰</span><span id="coins">0</span></div>
+      <div class="srow"><span>⏱️ CPS</span><span id="cps">0</span></div>
+      <div class="srow"><span>❤️</span><span><span id="hp">0</span>/<span id="hpMax">0</span></span></div>
+      <div class="srow"><span>🛡️</span><span id="armor">0</span></div>
+      <div class="srow"><span>🎯 DMG</span><span id="damage">0</span></div>
+      <div class="srow"><span>🏹 RG</span><span id="range">0</span></div>
+      <div class="srow"><span>⚡ Rate</span><span id="firerate">0</span></div>
+      <div class="srow"><span>🔥 Crit</span><span id="crit">0</span></div>
+      <div class="srow"><span>🌟 Spec</span><span id="specialcd">0</span></div>
+      <div class="srow"><span>🏁 Level</span><span id="level">1</span></div>
+      <div class="srow hint">Space=Skyd · X=Special · L=Lock</div>
+    </div>
+
+    <div id="log"></div>
+  </div>
+
+  <div id="modal" class="hidden">
+    <div class="modal-card">
+      <div class="modal-title">Kiste åbnet!</div>
+      <div class="loot-rarity" id="lootRarity"></div>
+      <div class="loot-line" id="lootText"></div>
+      <button id="closeModal" class="btn gold">Fortsæt</button>
+      <canvas id="lootFx" width="500" height="260"></canvas>
+    </div>
+  </div>
+
+  <template id="loot-toast">
+    <div class="toast"></div>
+  </template>
+
+  <script src="scripts/engine.js"></script>
+  <script src="scripts/world.js"></script>
+  <script src="scripts/entities.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
