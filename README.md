@@ -2,3 +2,5 @@
 https://hoejhus.github.io/Indy-Jungle-Tycoon/
 
 Space - Skyd
+X - Special
+L - Lock
