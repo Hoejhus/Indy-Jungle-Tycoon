@@ -85,7 +85,6 @@ canvas#game{
 .loot-rarity{ font-weight:700; margin:6px 0 2px 0; }
 .loot-line{ opacity:.95; margin-bottom:10px; }
 
-/* Ensure UI sits above background/canvas */
 #ui, #topbar, #sidebar, #log { z-index: 1000; }
 
 
@@ -107,7 +106,6 @@ canvas#game{
 .btn{ white-space:nowrap; }
 
 
-/* Minimal UI */
 #ui{ position:fixed; inset:0; pointer-events:none; z-index:10; }
 
 #miniBar:hover{ opacity:1; }
