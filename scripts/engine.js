@@ -23,11 +23,9 @@ window.Indy = window.Indy || {};
   class DifficultyManager{
     constructor(){ this.level = 0; this.t = 0; }
     tick(dt){
-      // grow over time but slower as it increases; soft cap
       this.t += dt;
       const inc = 0.02 * dt * (1/(1+this.level*0.35));
       this.level = Math.min(10, this.level + inc);
-      // small boost if player is cruising (high hp and coins climbing fast)
       const p = G.state.player; if (p && p.hp>0.85*p.hpMax) this.level = Math.min(10, this.level + 0.008*dt);
     }
   }
