@@ -109,12 +109,10 @@ function drawSprite(ctx, sprite, x, y, w, h){
       this.hp = hp; this.maxhp = hp; this.speed = speed;
       this.r = 18; this.dead=false; this.bob = Math.random()*Math.PI*2;
       this.spawnT = 0; this.type = type;
-      // status
-      this.vx = 0; // knockback velocity (+ pushes right)
+      this.vx = 0;
       this.poisonT = 0; this.poisonDPS = 0;
     }
     applyPoison(dps, dur){
-      // stack by refreshing duration and taking higher dps
       this.poisonDPS = Math.max(this.poisonDPS, dps);
       this.poisonT = Math.max(this.poisonT, dur);
     }
@@ -152,7 +150,6 @@ function drawSprite(ctx, sprite, x, y, w, h){
         G.state.player.addCoins(coins);
         G.state.effects.push(new FloatingText(this.x, this.y-24, `+${coins|0}💰`));
         for(let i=0;i<10;i++) G.state.effects.push(new Poof(this.x,this.y));
-        // removed level kill hook (continuous difficulty)
       }
     }
     draw(ctx){
@@ -308,19 +305,16 @@ function drawSprite(ctx, sprite, x, y, w, h){
       }
     }
     spawn(){
-      const diff = Indy.diff.level; // grows smoothly over time
+      const diff = Indy.diff.level;
       const dps = Math.max(1, this.getPlayerDPS());
-      // Base HP scales softly with diff
       const baseHP = Math.max(14, dps * 1.0) * (1 + diff*0.08);
       const baseSpd = 26 * (1 + diff*0.02);
-      // pick enemy type biased by diff
       const type = this.pickType(diff);
       const m = this.classMods(type);
       const hp = baseHP * m.hp;
       const spd = baseSpd * m.spd;
       const y = Indy.world.baseY + (Indy.state.rng()*40 - 20);
       Indy.state.enemies.push(new Enemy(hp, spd, y, type));
-      // cadence: depends on diff and player DPS. Also add "grace" if low HP.
       const grace = (Indy.state.player.hp/Indy.state.player.hpMax) < 0.35 ? 1.6 : 1.0;
       const base = 0.6 + (30 / dps);
       const diffFactor = 1.0 / (1 + diff*0.25);
@@ -352,7 +346,7 @@ function drawSprite(ctx, sprite, x, y, w, h){
       if (type==='tank')   return {hp:2.2, spd:0.6};
       if (type==='elite')  return {hp:1.6, spd:1.0};
       if (type==='pharaoh')return {hp:6.0, spd:0.5};
-      return {hp:1.0, spd:1.0}; // grunt
+      return {hp:1.0, spd:1.0};
     }
   }
 
